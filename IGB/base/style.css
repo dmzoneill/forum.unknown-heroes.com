@@ -1,0 +1,47 @@
+body
+{
+	font-family: Verdana, Arial;
+	font-size: 12;
+	padding: 0px;
+	margin: 0px;
+	color: #dddddd;
+}
+
+a:link    { color: #F8A406; }
+a:visited { color: #0099FF; }
+a:hover   { color: #CCCCCC; }
+a:active  { color: #F8A406; }
+
+a.normal
+{
+	font-weight: normal;
+}
+
+img
+{
+	border: 0;
+}
+
+
+table
+{
+	font-family: inherit;
+	font-size: 12;
+	color: inherit;
+	border: 0;
+	width: 100%;
+}
+
+tr
+{
+	font-family: inherit;
+	font-size: 12;
+	color: inherit;
+}
+
+td
+{
+	font-family: inherit;
+	font-size: 12;
+	color: inherit;
+}

@@ -1,0 +1,115 @@
+<hr />
+	<form name='memberform' action='apply.php?phase=apply' method='post'>
+	<h2>Membership Application</h2>
+	<br><br>
+		<table><tr><td colspan=2>
+		So you want to become a member of Unknown Heroes :). <br>
+			To do so, please read the following carefully and follow the steps below.<br><br>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+			<hr>
+				<h2>My Character</h2>
+		
+		
+			</td>
+		</tr>
+			<tr>
+		<td align=left valign=top width=200>Primary Character Name</td><td align=left><?php print $_SERVER['HTTP_EVE_CHARNAME']; ?> ( <?php print $_SERVER['HTTP_EVE_CHARID']; ?> )</td>
+		</tr>
+		<tr>
+		<td align=left valign=top width=200>Primary Character Skills</td><td align=left><textarea cols=30 rows=5  name='skills'></textarea></td>
+		</tr>
+		
+		
+		
+	<tr>
+			<td colspan=2>
+	
+		
+		<br>XML DATA only, Copy and paste the code into the above box.<br><br>Simply go here - > <a href='http://myeve.eve-online.com/character/xml.asp?characterID=<?php print $_SERVER['HTTP_EVE_CHARID']; ?>'>http://myeve.eve-online.com/character/xml.asp?characterID=<?php print $_SERVER['HTTP_EVE_CHARID']; ?></a><br><br>
+		</td>
+		</tr>
+		
+			<tr>
+			<td colspan=2>
+			<hr>
+				<h2>My Character's Screenshot(s)</h2>
+			
+			</td>
+		</tr>
+		<tr>
+		<td align=left valign=top width=200>Login Screenshot</td><td align=left><input type=text name='loginss'></td>
+		</tr>
+		
+			<tr>
+			<td colspan=2>
+		Please make sure the drop down menu is selected while taking a screenshot, otherwise your application will be rejected. <a href='imgs/loginex.jpg'>View Example</a>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan=2><br><br>
+Please attach the character's selection screenshot(s) of the/each account, in the below fields. <a href='imgs/charex.jpg'>View Example</a>
+			<br><br>
+			</td>
+		</tr>
+		
+		<tr>
+		<td align=left valign=top width=300>Character Selection Screenshot 1</td><td align=left><input type=text name='charss1'></td>
+		</tr>
+		
+		<tr>
+		<td align=left valign=top width=300>Character Selection Screenshot 2</td><td align=left><input type=text name='charss2'></td>
+		</tr>
+		
+				<tr>
+		<td align=left valign=top width=300>Character Selection Screenshot 3</td><td align=left><input type=text name='charss3'></td>
+		</tr>
+		
+				<tr>
+		<td align=left valign=top width=300>Notes : Help</td><td>You can put your screenshots on this site <a href='http://beta.localhostr.com'>http://beta.localhostr.com</a><br /> for free. Copy the links given to you after uploading your screenshots.</td>
+		</tr>
+		
+			
+		<tr>
+			<td colspan=2>
+			<hr>
+				<h2>A Bit about ME :)</h2>
+				<?php include("features/ip2country.php"); ?>
+			
+			</td>
+		</tr>
+		
+		
+		
+		<tr>
+			<td colspan=2 width=80%>
+<?php htmlspecialchars(include("pages/constitution.php")); ?>
+
+<br /><br />
+<input type='checkbox' name='terms'> I agree to the Consitution
+
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan=2>
+				<hr><h2>Finish up</h2><br>
+				
+			</td>
+		</tr>	
+									
+		
+		<tr>
+		
+		<td>
+				<input type=submit value='Submit Membership Application' />
+			</td>
+			<td>
+				
+			</td>
+		</tr>		
+	</table>
+	</form>

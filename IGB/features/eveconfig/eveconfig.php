@@ -1,0 +1,119 @@
+<?php
+/**********************************************************/
+/* License                                                */
+/*                                                        */
+/*                                                        */
+/*                                                        */
+/*                                                        */
+/* License ?... what license ?                            */
+/* This thing is free for you to take. And you take all   */
+/* responsabilities for using it. Whatever you do with it,*/
+/* I don't care (although I would appreciate you send me  */
+/* any enhancement).                                      */
+/* Although I'm no expert, I don't see much security      */
+/* issues in this code.                                   */
+/* The biggest potential security hole will most          */
+/* probably be... you !                                   */
+/*                                                        */
+/* Some code are coming from many places here and there   */
+/* and if you think that I stoled something from you,     */
+/* please contact me. I will give all appropriate         */
+/* credits.                                               */
+/*                                                        */
+/**********************************************************/
+
+/**********************************************************/
+/* All Eve-Online logos, images, trademark and related    */
+/* material are copyright CCP http://www.ccpgames.com     */
+/**********************************************************/
+
+
+// username: Your Account username (Not your character name)
+// password: Your Account password
+//           Please use the xxxxxx.php?encode=password to get the encoded version
+//           of your password. You can also use your password in plain text and set
+//           the "encoded" parameter to 'no'. Although base64 is far from being secure,
+//           it is still better than plain text.
+// encoded:  If you use the encode password function, this should be to yes.
+// charname: Your Character name
+// charid:   Your Character id (find it by going to your character account - see in url).
+// filepath: Folder where you want to save the xml file. As this folder must exists and be writable (777), it should not
+//           be http viewable. There is no unsecure code (that I'm aware of) in these files so there is no
+//           worries to have about having this folder writable as long as no access is possible via a browser.
+//           Note that if you have other scripts, you should check them to make sure they are secure.
+//           Note also that a temporary cookie will be saved in that folder, another good reason to make it
+//           unbrowsable.
+//           Example : /home/yoursite/temp/eve/
+//           Browsable: /home/yoursite/www/  <----- If root folder of your site where you put everything than BAD !!!
+//           Remember to chmod it 777
+
+
+// Default character ID
+$default = ''; // For only one char, same as Character 1, for multiple, take one of them.
+
+// Path for templates and xml files - MAKE THAT NON-BROWSABLE !
+$eve_filepath = '/home/yoursite/xxx/yyy'; // Remember to chmod it 777
+
+// Online/Offline (true/false) - If offline, you'll have to manually put the xml character and training files in the temp folder.
+$eveconnect = true;
+
+// NO TOUCHING !
+$eveconfig = array();
+
+// Character 1
+$eve_username = 'YOURUSERNAME1';
+$eve_password = 'YOURENCODEDORNOTPASSWORD';
+$eve_encoded  = 'yes';
+$eve_charname = 'YOURCHARACTERNAME1';
+$eve_charid   = 'YOURCHARACTERID1';
+$eve_theme    = 'default';
+
+// Building Config for character 1
+$eveconfig[$eve_charid] = array('username' => $eve_username,
+                                'password' => $eve_password,
+                                'encoded'  => $eve_encoded,
+                                'charid'   => $eve_charid,
+                                'charname' => $eve_charname,
+                                'theme'    => $eve_theme);
+
+/* Character 2 - Remove the // in front of the lines to add them. */
+//$eve_username = 'YOURUSERNAME2';
+//$eve_password = 'YOURENCODEDORNOTPASSWORD';
+//$eve_encoded  = 'yes';
+//$eve_charname = 'YOURCHARACTERNAME2';
+//$eve_charid   = 'YOURCHARACTERID2';
+//$eve_theme    = 'default';
+
+/* Building Config for character 2 */
+$eveconfig[$eve_charid] = array('username' => $eve_username,
+                                'password' => $eve_password,
+                                'encoded'  => $eve_encoded,
+                                'charid'   => $eve_charid,
+                                'charname' => $eve_charname,
+                                'theme'    => $eve_theme);
+
+/* Character 3 - Remove the // in front of the lines to add them. */
+//$eve_username = 'YOURUSERNAME3';
+//$eve_password = 'YOURENCODEDORNOTPASSWORD';
+//$eve_encoded  = 'yes';
+//$eve_charname = 'YOURCHARACTERNAME3';
+//$eve_charid   = 'YOURCHARACTERID3';
+//$eve_theme    = 'default';
+
+/* Building Config for character 3 */
+$eveconfig[$eve_charid] = array('username' => $eve_username,
+                                'password' => $eve_password,
+                                'encoded'  => $eve_encoded,
+                                'charid'   => $eve_charid,
+                                'charname' => $eve_charname,
+                                'theme'    => $eve_theme);
+
+///////////////////////////////////////////////////////////
+
+$eveconfig['default']    = $default;
+$eveconfig['filepath']   = $eve_filepath;
+$eveconfig['eveconnect'] = $eveconnect;
+
+// Done... no need to touch anything else. (Unless you know what you are doing)
+
+?>
