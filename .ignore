@@ -39,3 +39,8 @@ images/index.htm
 images/avatars/index.htm
 images/avatars/gallery/index.htm
 templates/index.htm
+
+# EVE Online API CharacterSheet responses (api.eve-online.com) cached for character 130729818: raw XML
+# in IGB/features/xml/ and the same dump embedded as a PHP string in IGB/features/data.php.
+IGB/features/xml/
+IGB/features/data.php
