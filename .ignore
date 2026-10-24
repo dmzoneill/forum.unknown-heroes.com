@@ -1,0 +1,46 @@
+# phpBB 2.0.22 forum core (phpBB Group, https://www.phpbb.com, GPLv2): stock admin panel, includes, DB layers,
+# language packs, docs and the subSilver default theme shipped with phpBB 2.0.x.
+admin/
+includes/
+db/
+language/
+docs/
+templates/subSilver/
+
+# phpBB 2.0.22 stock top-level pages (phpBB Group, GPLv2).
+common.php
+extension.inc
+faq.php
+groupcp.php
+index.php
+login.php
+memberlist.php
+modcp.php
+posting.php
+privmsg.php
+profile.php
+search.php
+viewforum.php
+viewonline.php
+viewtopic.php
+
+# "Solaris" phpBB2 theme by Jakob Persson (http://www.jakob-persson.com, 2003).
+templates/Solaris/
+
+# EDK - EVE Development Network Killboard v1.2 (www.eve-dev.net, GPL), bundled with its Smarty copy.
+IGB/Killboard/
+
+# Smarty 2.6.10 template engine (smarty.php.net, LGPL 2.1).
+IGB/features/includes/Smarty/
+
+# phpBB 2.0.22 stock blank directory-listing guards (identical index.htm shipped in phpBB's cache/, images/, templates/).
+cache/index.htm
+images/index.htm
+images/avatars/index.htm
+images/avatars/gallery/index.htm
+templates/index.htm
+
+# EVE Online API CharacterSheet responses (api.eve-online.com) cached for character 130729818: raw XML
+# in IGB/features/xml/ and the same dump embedded as a PHP string in IGB/features/data.php.
+IGB/features/xml/
+IGB/features/data.php
