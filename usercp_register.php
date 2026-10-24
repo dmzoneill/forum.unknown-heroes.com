@@ -39,7 +39,7 @@
 if ( !defined('IN_PHPBB') )
 {
 	die("Hacking attempt");
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnevaluatedCode */ exit;
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnevaluatedCode */ /** @psalm-suppress UnevaluatedCode */ exit;
 }
 
 $unhtml_specialchars_match = array('#&gt;#', '#&lt;#', '#&quot;#', '#&amp;#');
@@ -49,7 +49,7 @@ $unhtml_specialchars_replace = array('>', '<', '"', '&');
 // Load agreement template since user has not yet
 // agreed to registration conditions/coppa
 //
-/** @psalm-suppress MissingReturnType */ function show_coppa()
+/** @psalm-suppress MissingReturnType */ /** @psalm-suppress MissingReturnType */ function show_coppa()
 {
 	/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ global $userdata, $template, $lang, $phpbb_root_path, $phpEx;
 
@@ -57,7 +57,7 @@ $unhtml_specialchars_replace = array('>', '<', '"', '&');
 		'body' => 'agreement.tpl')
 	);
 
-	/** @psalm-suppress UndefinedFunction */ $template->assign_vars(array(
+	/** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $template->assign_vars(array(
 		'REGISTRATION' => $lang['Registration'],
 		'AGREEMENT' => $lang['Reg_agreement'],
 		"AGREE_OVER_13" => $lang['Agree_over_13'],
@@ -76,15 +76,15 @@ $unhtml_specialchars_replace = array('>', '<', '"', '&');
 
 $error = FALSE;
 $error_msg = '';
-/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $page_title = ( $mode == 'editprofile' ) ? $lang['Edit_profile'] : $lang['Register'];
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $page_title = ( $mode == 'editprofile' ) ? $lang['Edit_profile'] : $lang['Register'];
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( $mode == 'register' && !isset($HTTP_POST_VARS['agreed']) && !isset($HTTP_GET_VARS['agreed']) )
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( $mode == 'register' && !isset($HTTP_POST_VARS['agreed']) && !isset($HTTP_GET_VARS['agreed']) )
 {
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/page_header.'.$phpEx);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 
 	show_coppa();
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude */ include($phpbb_root_path . 'includes/page_tail.'.$phpEx);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude */ /** @psalm-suppress UnresolvableInclude */ include($phpbb_root_path . 'includes/page_tail.'.$phpEx);
 }
 
 $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ? 0 : TRUE;
@@ -92,21 +92,21 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 //
 // Check and initialize some variables if needed
 //
-/** @psalm-suppress UndefinedGlobalVariable */ if (
+/** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if (
 	isset($HTTP_POST_VARS['submit']) ||
 	isset($HTTP_POST_VARS['avatargallery']) ||
 	isset($HTTP_POST_VARS['submitavatar']) ||
 	isset($HTTP_POST_VARS['cancelavatar']) ||
 	/* @phpstan-ignore-line */ $mode == 'register' )
 {
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/functions_validate.'.$phpEx);
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/bbcode.'.$phpEx);
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/functions_post.'.$phpEx);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/functions_validate.'.$phpEx);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/bbcode.'.$phpEx);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/functions_post.'.$phpEx);
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( $mode == 'editprofile' )
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( $mode == 'editprofile' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_id = intval($HTTP_POST_VARS['user_id']);
-		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $current_email = trim(htmlspecialchars($HTTP_POST_VARS['current_email']));
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_id = intval($HTTP_POST_VARS['user_id']);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $current_email = trim(htmlspecialchars($HTTP_POST_VARS['current_email']));
 	}
 
 	$strip_var_list = array('email' => 'email', 'icq' => 'icq', 'aim' => 'aim', 'msn' => 'msn', 'yim' => 'yim', 'website' => 'website', 'location' => 'location', 'occupation' => 'occupation', 'interests' => 'interests', 'confirm_code' => 'confirm_code');
@@ -114,7 +114,7 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 	// Strip all tags from data ... may p**s some people off, bah, strip_tags is
 	// doing the job but can still break HTML output ... have no choice, have
 	// to use htmlspecialchars ... be prepared to be moaned at.
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ while( list($var, $param) = @each($strip_var_list) )
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ while( list($var, $param) = @each($strip_var_list) )
 	{
 		if ( !empty($HTTP_POST_VARS[$param]) )
 		{
@@ -122,11 +122,11 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 		}
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $username = ( !empty($HTTP_POST_VARS['username']) ) ? phpbb_clean_username($HTTP_POST_VARS['username']) : '';
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $username = ( !empty($HTTP_POST_VARS['username']) ) ? phpbb_clean_username($HTTP_POST_VARS['username']) : '';
 
 	$trim_var_list = array('cur_password' => 'cur_password', 'new_password' => 'new_password', 'password_confirm' => 'password_confirm', 'signature' => 'signature');
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ while( list($var, $param) = @each($trim_var_list) )
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ while( list($var, $param) = @each($trim_var_list) )
 	{
 		if ( !empty($HTTP_POST_VARS[$param]) )
 		{
@@ -139,7 +139,7 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 
 	// Run some validation on the optional fields. These are pass-by-ref, so they'll be changed to
 	// empty strings if they fail.
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ validate_optional_fields($icq, $aim, $msn, $yim, $website, $location, $occupation, $interests, $signature);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ validate_optional_fields($icq, $aim, $msn, $yim, $website, $location, $occupation, $interests, $signature);
 
 	$viewemail = ( isset($HTTP_POST_VARS['viewemail']) ) ? ( ($HTTP_POST_VARS['viewemail']) ? TRUE : 0 ) : 0;
 	$allowviewonline = ( isset($HTTP_POST_VARS['hideonline']) ) ? ( ($HTTP_POST_VARS['hideonline']) ? 0 : TRUE ) : TRUE;
@@ -150,22 +150,22 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 
 	/* @phpstan-ignore-line */ if ( $mode == 'register' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $attachsig = ( isset($HTTP_POST_VARS['attachsig']) ) ? ( ($HTTP_POST_VARS['attachsig']) ? TRUE : 0 ) : $board_config['allow_sig'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $attachsig = ( isset($HTTP_POST_VARS['attachsig']) ) ? ( ($HTTP_POST_VARS['attachsig']) ? TRUE : 0 ) : $board_config['allow_sig'];
 
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowhtml = ( isset($HTTP_POST_VARS['allowhtml']) ) ? ( ($HTTP_POST_VARS['allowhtml']) ? TRUE : 0 ) : $board_config['allow_html'];
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowbbcode = ( isset($HTTP_POST_VARS['allowbbcode']) ) ? ( ($HTTP_POST_VARS['allowbbcode']) ? TRUE : 0 ) : $board_config['allow_bbcode'];
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowsmilies = ( isset($HTTP_POST_VARS['allowsmilies']) ) ? ( ($HTTP_POST_VARS['allowsmilies']) ? TRUE : 0 ) : $board_config['allow_smilies'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowhtml = ( isset($HTTP_POST_VARS['allowhtml']) ) ? ( ($HTTP_POST_VARS['allowhtml']) ? TRUE : 0 ) : $board_config['allow_html'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowbbcode = ( isset($HTTP_POST_VARS['allowbbcode']) ) ? ( ($HTTP_POST_VARS['allowbbcode']) ? TRUE : 0 ) : $board_config['allow_bbcode'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowsmilies = ( isset($HTTP_POST_VARS['allowsmilies']) ) ? ( ($HTTP_POST_VARS['allowsmilies']) ? TRUE : 0 ) : $board_config['allow_smilies'];
 	}
 	else
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $attachsig = ( isset($HTTP_POST_VARS['attachsig']) ) ? ( ($HTTP_POST_VARS['attachsig']) ? TRUE : 0 ) : $userdata['user_attachsig'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $attachsig = ( isset($HTTP_POST_VARS['attachsig']) ) ? ( ($HTTP_POST_VARS['attachsig']) ? TRUE : 0 ) : $userdata['user_attachsig'];
 
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowhtml = ( isset($HTTP_POST_VARS['allowhtml']) ) ? ( ($HTTP_POST_VARS['allowhtml']) ? TRUE : 0 ) : $userdata['user_allowhtml'];
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowbbcode = ( isset($HTTP_POST_VARS['allowbbcode']) ) ? ( ($HTTP_POST_VARS['allowbbcode']) ? TRUE : 0 ) : $userdata['user_allowbbcode'];
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowsmilies = ( isset($HTTP_POST_VARS['allowsmilies']) ) ? ( ($HTTP_POST_VARS['allowsmilies']) ? TRUE : 0 ) : $userdata['user_allowsmile'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowhtml = ( isset($HTTP_POST_VARS['allowhtml']) ) ? ( ($HTTP_POST_VARS['allowhtml']) ? TRUE : 0 ) : $userdata['user_allowhtml'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowbbcode = ( isset($HTTP_POST_VARS['allowbbcode']) ) ? ( ($HTTP_POST_VARS['allowbbcode']) ? TRUE : 0 ) : $userdata['user_allowbbcode'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowsmilies = ( isset($HTTP_POST_VARS['allowsmilies']) ) ? ( ($HTTP_POST_VARS['allowsmilies']) ? TRUE : 0 ) : $userdata['user_allowsmile'];
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_style = ( isset($HTTP_POST_VARS['style']) ) ? intval($HTTP_POST_VARS['style']) : $board_config['default_style'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_style = ( isset($HTTP_POST_VARS['style']) ) ? intval($HTTP_POST_VARS['style']) : $board_config['default_style'];
 
 	if ( !empty($HTTP_POST_VARS['language']) )
 	{
@@ -176,46 +176,46 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 		else
 		{
 			$error = true;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg = $lang['Fields_empty'];
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg = $lang['Fields_empty'];
 		}
 	}
 	else
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_lang = $board_config['default_lang'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_lang = $board_config['default_lang'];
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_timezone = ( isset($HTTP_POST_VARS['timezone']) ) ? doubleval($HTTP_POST_VARS['timezone']) : $board_config['board_timezone'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_timezone = ( isset($HTTP_POST_VARS['timezone']) ) ? doubleval($HTTP_POST_VARS['timezone']) : $board_config['board_timezone'];
 
 	$sql = "SELECT config_value
 		FROM " /* @phpstan-ignore-line */ . CONFIG_TABLE . "
 		WHERE config_name = 'default_dateformat'";
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not select default dateformat', '', __LINE__, __FILE__, $sql);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not select default dateformat', '', __LINE__, __FILE__, $sql);
 	}
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $row = $db->sql_fetchrow($result);
-	/** @psalm-suppress PossiblyUndefinedGlobalVariable */ $board_config['default_dateformat'] = $row['config_value'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $row = $db->sql_fetchrow($result);
+	/** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $board_config['default_dateformat'] = $row['config_value'];
 	$user_dateformat = ( !empty($HTTP_POST_VARS['dateformat']) ) ? trim(htmlspecialchars($HTTP_POST_VARS['dateformat'])) : $board_config['default_dateformat'];
 
 	$user_avatar_local = ( isset($HTTP_POST_VARS['avatarselect']) && !empty($HTTP_POST_VARS['submitavatar']) && $board_config['allow_avatar_local'] ) ? htmlspecialchars($HTTP_POST_VARS['avatarselect']) : ( ( isset($HTTP_POST_VARS['avatarlocal'])  ) ? htmlspecialchars($HTTP_POST_VARS['avatarlocal']) : '' );
-	/** @psalm-suppress PossiblyUndefinedArrayOffset, RiskyTruthyFalsyComparison */ $user_avatar_category = ( isset($HTTP_POST_VARS['avatarcatname']) && $board_config['allow_avatar_local'] ) ? htmlspecialchars($HTTP_POST_VARS['avatarcatname']) : '' ;
+	/** @psalm-suppress PossiblyUndefinedArrayOffset, RiskyTruthyFalsyComparison */ /** @psalm-suppress PossiblyUndefinedArrayOffset, RiskyTruthyFalsyComparison */ $user_avatar_category = ( isset($HTTP_POST_VARS['avatarcatname']) && $board_config['allow_avatar_local'] ) ? htmlspecialchars($HTTP_POST_VARS['avatarcatname']) : '' ;
 
 	$user_avatar_remoteurl = ( !empty($HTTP_POST_VARS['avatarremoteurl']) ) ? trim(htmlspecialchars($HTTP_POST_VARS['avatarremoteurl'])) : '';
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar_upload = ( !empty($HTTP_POST_VARS['avatarurl']) ) ? trim($HTTP_POST_VARS['avatarurl']) : ( ( $HTTP_POST_FILES['avatar']['tmp_name'] != "none") ? $HTTP_POST_FILES['avatar']['tmp_name'] : '' );
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar_upload = ( !empty($HTTP_POST_VARS['avatarurl']) ) ? trim($HTTP_POST_VARS['avatarurl']) : ( ( $HTTP_POST_FILES['avatar']['tmp_name'] != "none") ? $HTTP_POST_FILES['avatar']['tmp_name'] : '' );
 	$user_avatar_name = ( !empty($HTTP_POST_FILES['avatar']['name']) ) ? $HTTP_POST_FILES['avatar']['name'] : '';
 	/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $user_avatar_size = ( !empty($HTTP_POST_FILES['avatar']['size']) ) ? $HTTP_POST_FILES['avatar']['size'] : 0;
 	/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $user_avatar_filetype = ( !empty($HTTP_POST_FILES['avatar']['type']) ) ? $HTTP_POST_FILES['avatar']['type'] : '';
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar = ( empty($user_avatar_local) && $mode == 'editprofile' ) ? $userdata['user_avatar'] : '';
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar_type = ( empty($user_avatar_local) && $mode == 'editprofile' ) ? $userdata['user_avatar_type'] : '';
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar = ( empty($user_avatar_local) && $mode == 'editprofile' ) ? $userdata['user_avatar'] : '';
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar_type = ( empty($user_avatar_local) && $mode == 'editprofile' ) ? $userdata['user_avatar_type'] : '';
 
 	if ( (isset($HTTP_POST_VARS['avatargallery']) || isset($HTTP_POST_VARS['submitavatar']) || isset($HTTP_POST_VARS['cancelavatar'])) && (!isset($HTTP_POST_VARS['submit'])) )
 	{
 		$username = stripslashes($username);
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $email = stripslashes($email);
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $cur_password = htmlspecialchars(stripslashes($cur_password));
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $new_password = htmlspecialchars(stripslashes($new_password));
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $password_confirm = htmlspecialchars(stripslashes($password_confirm));
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $email = stripslashes($email);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $cur_password = htmlspecialchars(stripslashes($cur_password));
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $new_password = htmlspecialchars(stripslashes($new_password));
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $password_confirm = htmlspecialchars(stripslashes($password_confirm));
 
 		/* @phpstan-ignore-line */ $icq = stripslashes($icq);
 		/* @phpstan-ignore-line */ $aim = stripslashes($aim);
@@ -226,9 +226,9 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 		/* @phpstan-ignore-line */ $location = stripslashes($location);
 		/* @phpstan-ignore-line */ $occupation = stripslashes($occupation);
 		/* @phpstan-ignore-line */ $interests = stripslashes($interests);
-		/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $signature = htmlspecialchars(stripslashes($signature));
+		/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $signature = htmlspecialchars(stripslashes($signature));
 
-		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $user_lang = stripslashes($user_lang);
+		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $user_lang = stripslashes($user_lang);
 		$user_dateformat = stripslashes($user_dateformat);
 
 		if ( !isset($HTTP_POST_VARS['cancelavatar']))
@@ -244,9 +244,9 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 // and ensure that they were trying to register a second time
 // (Prevents double registrations)
 //
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ if ($mode == 'register' && ($userdata['session_logged_in'] || $username == $userdata['username']))
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ if ($mode == 'register' && ($userdata['session_logged_in'] || $username == $userdata['username']))
 {
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ message_die(GENERAL_MESSAGE, $lang['Username_taken'], '', __LINE__, __FILE__);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ message_die(GENERAL_MESSAGE, $lang['Username_taken'], '', __LINE__, __FILE__);
 }
 
 //
@@ -254,22 +254,22 @@ $coppa = ( empty($HTTP_POST_VARS['coppa']) && empty($HTTP_GET_VARS['coppa']) ) ?
 //
 if ( isset($HTTP_POST_VARS['submit']) )
 {
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/usercp_avatar.'.$phpEx);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/usercp_avatar.'.$phpEx);
 
 	// session id check
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ($sid == '' || $sid != $userdata['session_id'])
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ($sid == '' || $sid != $userdata['session_id'])
 	{
 		$error = true;
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Session_invalid'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Session_invalid'];
 	}
 
 	/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $passwd_sql = '';
 	/* @phpstan-ignore-line */ if ( $mode == 'editprofile' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ( $user_id != $userdata['user_id'] )
+		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ( $user_id != $userdata['user_id'] )
 		{
 			$error = TRUE;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Wrong_Profile'];
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Wrong_Profile'];
 		}
 	}
 	/* @phpstan-ignore-line */ else if ( $mode == 'register' )
@@ -277,16 +277,16 @@ if ( isset($HTTP_POST_VARS['submit']) )
 		if ( empty($username) || empty($new_password) || empty($password_confirm) || empty($email) )
 		{
 			$error = TRUE;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Fields_empty'];
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Fields_empty'];
 		}
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ($board_config['enable_confirm'] && $mode == 'register')
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ($board_config['enable_confirm'] && $mode == 'register')
 	{
 		if (empty($HTTP_POST_VARS['confirm_id']))
 		{
 			$error = TRUE;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Confirm_code_wrong'];
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Confirm_code_wrong'];
 		}
 		else
 		{
@@ -296,39 +296,39 @@ if ( isset($HTTP_POST_VARS['submit']) )
 				$confirm_id = '';
 			}
 			
-			/** @psalm-suppress UndefinedGlobalVariable */ $sql = 'SELECT code 
+			/** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $sql = 'SELECT code 
 				FROM ' /* @phpstan-ignore-line */ . CONFIRM_TABLE . " 
 				WHERE confirm_id = '$confirm_id' 
 					AND session_id = '" /* @phpstan-ignore-line */ . $userdata['session_id'] . "'";
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if (!($result = $db->sql_query($sql)))
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if (!($result = $db->sql_query($sql)))
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain confirmation code', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain confirmation code', '', __LINE__, __FILE__, $sql);
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ($row = $db->sql_fetchrow($result))
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ($row = $db->sql_fetchrow($result))
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ($row['code'] != $confirm_code)
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ($row['code'] != $confirm_code)
 				{
 					$error = TRUE;
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Confirm_code_wrong'];
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Confirm_code_wrong'];
 				}
 				else
 				{
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $sql = 'DELETE FROM ' . CONFIRM_TABLE . " 
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $sql = 'DELETE FROM ' . CONFIRM_TABLE . " 
 						WHERE confirm_id = '$confirm_id' 
 							AND session_id = '" /* @phpstan-ignore-line */ . $userdata['session_id'] . "'";
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if (!$db->sql_query($sql))
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if (!$db->sql_query($sql))
 					{
-						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not delete confirmation code', '', __LINE__, __FILE__, $sql);
+						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not delete confirmation code', '', __LINE__, __FILE__, $sql);
 					}
 				}
 			}
 			else
 			{		
 				$error = TRUE;
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Confirm_code_wrong'];
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Confirm_code_wrong'];
 			}
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
 		}
 	}
 
@@ -338,31 +338,31 @@ if ( isset($HTTP_POST_VARS['submit']) )
 		if ( $new_password != $password_confirm )
 		{
 			$error = TRUE;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Password_mismatch'];
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Password_mismatch'];
 		}
 		else if ( strlen($new_password) > 32 )
 		{
 			$error = TRUE;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Password_long'];
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Password_long'];
 		}
 		else
 		{
 			/* @phpstan-ignore-line */ if ( $mode == 'editprofile' )
 			{
-				/** @psalm-suppress PossiblyUndefinedGlobalVariable */ $sql = "SELECT user_password
+				/** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $sql = "SELECT user_password
 					FROM " /* @phpstan-ignore-line */ . USERS_TABLE . "
 					WHERE user_id = $user_id"/* @phpstan-ignore-line */ ;
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
 				{
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain user_password information', '', __LINE__, __FILE__, $sql);
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain user_password information', '', __LINE__, __FILE__, $sql);
 				}
 
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $row = $db->sql_fetchrow($result);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $row = $db->sql_fetchrow($result);
 
-				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $row['user_password'] != md5($cur_password) )
+				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $row['user_password'] != md5($cur_password) )
 				{
 					$error = TRUE;
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Current_password_mismatch'];
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Current_password_mismatch'];
 				}
 			}
 
@@ -376,18 +376,18 @@ if ( isset($HTTP_POST_VARS['submit']) )
 	else if ( ( empty($new_password) && !empty($password_confirm) ) || ( !empty($new_password) && empty($password_confirm) ) )
 	{
 		$error = TRUE;
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Password_mismatch'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Password_mismatch'];
 	}
 
 	//
 	// Do a ban check on this email address
 	//
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ( $email != $userdata['user_email'] || $mode == 'register' )
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ( $email != $userdata['user_email'] || $mode == 'register' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $result = validate_email($email);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $result = validate_email($email);
 		if ( $result['error'] )
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $email = $userdata['user_email'];
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $email = $userdata['user_email'];
 
 			$error = TRUE;
 			$error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $result['error_msg'];
@@ -395,39 +395,39 @@ if ( isset($HTTP_POST_VARS['submit']) )
 
 		/* @phpstan-ignore-line */ if ( $mode == 'editprofile' )
 		{
-			/** @psalm-suppress PossiblyUndefinedGlobalVariable */ $sql = "SELECT user_password
+			/** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $sql = "SELECT user_password
 				FROM " /* @phpstan-ignore-line */ . USERS_TABLE . "
 				WHERE user_id = $user_id"/* @phpstan-ignore-line */ ;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain user_password information', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain user_password information', '', __LINE__, __FILE__, $sql);
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $row = $db->sql_fetchrow($result);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $row = $db->sql_fetchrow($result);
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $row['user_password'] != md5($cur_password) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $row['user_password'] != md5($cur_password) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $email = $userdata['user_email'];
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $email = $userdata['user_email'];
 
 				$error = TRUE;
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Current_password_mismatch'];
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Current_password_mismatch'];
 			}
 		}
 	}
 
 	$username_sql = '';
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['allow_namechange'] || $mode == 'register' )
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['allow_namechange'] || $mode == 'register' )
 	{
 		if ( empty($username) )
 		{
 			// Error is already triggered, since one field is empty.
 			$error = TRUE;
 		}
-		/* @phpstan-ignore-line */ else /** @psalm-suppress UndefinedGlobalVariable */ if ( $username != $userdata['username'] || $mode == 'register')
+		/* @phpstan-ignore-line */ else /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( $username != $userdata['username'] || $mode == 'register')
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if (strtolower($username) != strtolower($userdata['username']) || $mode == 'register')
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if (strtolower($username) != strtolower($userdata['username']) || $mode == 'register')
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $result = validate_username($username);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $result = validate_username($username);
 				if ( $result['error'] )
 				{
 					$error = TRUE;
@@ -437,62 +437,62 @@ if ( isset($HTTP_POST_VARS['submit']) )
 
 			if (!$error)
 			{
-				/** @psalm-suppress PossiblyInvalidOperand */ $username_sql = "username = '" . str_replace("\'", "''", $username) . "', ";
+				/** @psalm-suppress PossiblyInvalidOperand */ /** @psalm-suppress PossiblyInvalidOperand */ $username_sql = "username = '" . str_replace("\'", "''", $username) . "', ";
 			}
 		}
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $signature != '' )
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $signature != '' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( strlen($signature) > $board_config['max_sig_chars'] )
+		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( strlen($signature) > $board_config['max_sig_chars'] )
 		{
 			$error = TRUE;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Signature_too_long'];
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg .= ( ( isset($error_msg) ) ? '<br />' : '' ) . $lang['Signature_too_long'];
 		}
 
 		if ( !isset($signature_bbcode_uid) || $signature_bbcode_uid == '' )
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ $signature_bbcode_uid = ( $allowbbcode ) ? make_bbcode_uid() : '';
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ $signature_bbcode_uid = ( $allowbbcode ) ? make_bbcode_uid() : '';
 		}
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $signature = prepare_message($signature, $allowhtml, $allowbbcode, $allowsmilies, $signature_bbcode_uid);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $signature = prepare_message($signature, $allowhtml, $allowbbcode, $allowsmilies, $signature_bbcode_uid);
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $website != '' )
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $website != '' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedFunctionCall */ rawurlencode($website);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UnusedFunctionCall */ /** @psalm-suppress UnusedFunctionCall */ rawurlencode($website);
 	}
 
 	$avatar_sql = '';
 
 	/* @phpstan-ignore-line */ if ( isset($HTTP_POST_VARS['avatardel']) && $mode == 'editprofile' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ $avatar_sql = user_avatar_delete($userdata['user_avatar_type'], $userdata['user_avatar']);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ $avatar_sql = user_avatar_delete($userdata['user_avatar_type'], $userdata['user_avatar']);
 	}
 	else
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( ( !empty($user_avatar_upload) || !empty($user_avatar_name) ) && $board_config['allow_avatar_upload'] )
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( ( !empty($user_avatar_upload) || !empty($user_avatar_name) ) && $board_config['allow_avatar_upload'] )
 	{
 		if ( !empty($user_avatar_upload) )
 		{
 			$avatar_mode = (empty($user_avatar_name)) ? 'remote' : 'local';
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable, PossiblyUndefinedVariable */ $avatar_sql = user_avatar_upload($mode, $avatar_mode, $userdata['user_avatar'], $userdata['user_avatar_type'], $error, $error_msg, $user_avatar_upload, $user_avatar_name, $user_avatar_size, $user_avatar_filetype);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable, PossiblyUndefinedVariable */ $avatar_sql = user_avatar_upload($mode, $avatar_mode, $userdata['user_avatar'], $userdata['user_avatar_type'], $error, $error_msg, $user_avatar_upload, $user_avatar_name, $user_avatar_size, $user_avatar_filetype);
 		}
 		/* @phpstan-ignore-line */ else if ( !empty($user_avatar_name) )
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ $l_avatar_size = sprintf($lang['Avatar_filesize'], round($board_config['avatar_filesize'] / 1024));
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ $l_avatar_size = sprintf($lang['Avatar_filesize'], round($board_config['avatar_filesize'] / 1024));
 
 			$error = true;
 			$error_msg .= ( ( !empty($error_msg) ) ? '<br />' : '' ) . $l_avatar_size;
 		}
 	}
-	/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $user_avatar_remoteurl != '' && $board_config['allow_avatar_remote'] )
+	/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $user_avatar_remoteurl != '' && $board_config['allow_avatar_remote'] )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ user_avatar_delete($userdata['user_avatar_type'], $userdata['user_avatar']);
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $avatar_sql = user_avatar_url($mode, $error, $error_msg, $user_avatar_remoteurl);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ user_avatar_delete($userdata['user_avatar_type'], $userdata['user_avatar']);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $avatar_sql = user_avatar_url($mode, $error, $error_msg, $user_avatar_remoteurl);
 	}
-	/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $user_avatar_local != '' && $board_config['allow_avatar_local'] )
+	/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $user_avatar_local != '' && $board_config['allow_avatar_local'] )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ user_avatar_delete($userdata['user_avatar_type'], $userdata['user_avatar']);
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $avatar_sql = user_avatar_gallery($mode, $error, $error_msg, $user_avatar_local, $user_avatar_category);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ user_avatar_delete($userdata['user_avatar_type'], $userdata['user_avatar']);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $avatar_sql = user_avatar_gallery($mode, $error, $error_msg, $user_avatar_local, $user_avatar_category);
 	}
 
 	if ( !$error )
@@ -504,18 +504,18 @@ if ( isset($HTTP_POST_VARS['submit']) )
 
 		/* @phpstan-ignore-line */ if ( $mode == 'editprofile' )
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ( $email != $userdata['user_email'] && $board_config['require_activation'] != USER_ACTIVATION_NONE && $userdata['user_level'] != ADMIN )
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ( $email != $userdata['user_email'] && $board_config['require_activation'] != USER_ACTIVATION_NONE && $userdata['user_level'] != ADMIN )
 			{
 				$user_active = 0;
 
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $user_actkey = gen_rand_string(true);
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $key_len = 54 - ( strlen($server_url) );
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $user_actkey = gen_rand_string(true);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $key_len = 54 - ( strlen($server_url) );
 				$key_len = ( $key_len > 6 ) ? $key_len : 6;
 				$user_actkey = substr($user_actkey, 0, $key_len);
 
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( $userdata['session_logged_in'] )
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( $userdata['session_logged_in'] )
 				{
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ session_end($userdata['session_id'], $userdata['user_id']);
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ session_end($userdata['session_id'], $userdata['user_id']);
 				}
 			}
 			else
@@ -524,19 +524,19 @@ if ( isset($HTTP_POST_VARS['submit']) )
 				$user_actkey = '';
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidOperand, PossiblyUndefinedGlobalVariable */ $sql = "UPDATE " . USERS_TABLE . "
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidOperand, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyInvalidOperand, PossiblyUndefinedGlobalVariable */ $sql = "UPDATE " . USERS_TABLE . "
 				SET " /* @phpstan-ignore-line */ . $username_sql . $passwd_sql . "user_email = '" . str_replace("\'", "''", $email) ."', user_icq = '" . str_replace("\'", "''", $icq) . "', user_website = '" . str_replace("\'", "''", $website) . "', user_occ = '" . str_replace("\'", "''", $occupation) . "', user_from = '" . str_replace("\'", "''", $location) . "', user_interests = '" . str_replace("\'", "''", $interests) . "', user_sig = '" . str_replace("\'", "''", $signature) . "', user_sig_bbcode_uid = '$signature_bbcode_uid', user_viewemail = $viewemail, user_aim = '" . str_replace("\'", "''", str_replace(' ', '+', $aim)) . "', user_yim = '" . str_replace("\'", "''", $yim) . "', user_msnm = '" . str_replace("\'", "''", $msn) . "', user_attachsig = $attachsig, user_allowsmile = $allowsmilies, user_allowhtml = $allowhtml, user_allowbbcode = $allowbbcode, user_allow_viewonline = $allowviewonline, user_notify = $notifyreply, user_notify_pm = $notifypm, user_popup_pm = $popup_pm, user_timezone = $user_timezone, user_dateformat = '" . str_replace("\'", "''", $user_dateformat) . "', user_lang = '" . str_replace("\'", "''", $user_lang) . "', user_style = $user_style, user_active = $user_active, user_actkey = '" . str_replace("\'", "''", $user_actkey) . "'" . $avatar_sql . "
 				WHERE user_id = $user_id"/* @phpstan-ignore-line */ ;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ if ( !($result = $db->sql_query($sql)) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not update users table', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not update users table', '', __LINE__, __FILE__, $sql);
 			}
 
 			// We remove all stored login keys since the password has been updated
 			// and change the current one (if applicable)
 			if ( !empty($passwd_sql) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ session_reset_keys($user_id, $user_ip);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ session_reset_keys($user_id, $user_ip);
 			}
 
 			if ( !$user_active )
@@ -544,97 +544,97 @@ if ( isset($HTTP_POST_VARS['submit']) )
 				//
 				// The users account has been deactivated, send them an email with a new activation key
 				//
-				/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/emailer.'.$phpEx);
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass, PossiblyUndefinedGlobalVariable */ $emailer = new emailer($board_config['smtp_delivery']);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/emailer.'.$phpEx);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass, PossiblyUndefinedGlobalVariable */ $emailer = new emailer($board_config['smtp_delivery']);
 
- 				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] != USER_ACTIVATION_ADMIN )
+ 				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] != USER_ACTIVATION_ADMIN )
  				{
- 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->from($board_config['board_email']);
- 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->replyto($board_config['board_email']);
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->from($board_config['board_email']);
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->replyto($board_config['board_email']);
  
- 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->use_template('user_activate', stripslashes($user_lang));
- 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedClass */ $emailer->email_address($email);
- 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->set_subject($lang['Reactivate']);
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->use_template('user_activate', stripslashes($user_lang));
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedVariable, UndefinedClass */ $emailer->email_address($email);
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedClass */ $emailer->set_subject($lang['Reactivate']);
   
- 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->assign_vars(array(
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument, UndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument, UndefinedGlobalVariable, UndefinedClass */ $emailer->assign_vars(array(
  						/* @phpstan-ignore-line */ 'SITENAME' => $board_config['sitename'],
  						/* @phpstan-ignore-line */ 'USERNAME' => preg_replace($unhtml_specialchars_match, $unhtml_specialchars_replace, substr(str_replace("\'", "'", $username), 0, 25)),
  						'EMAIL_SIG' => (!empty($board_config['board_email_sig'])) ? str_replace('<br />', "\n", "-- \n" . $board_config['board_email_sig']) : '',
   
  						/* @phpstan-ignore-line */ 'U_ACTIVATE' => $server_url . '?mode=activate&' . POST_USERS_URL . '=' . $user_id . '&act_key=' . $user_actkey)
  					);
- 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->send();
- 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->reset();
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->send();
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->reset();
  				}
- 				/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_ADMIN )
+ 				/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_ADMIN )
  				{
  					$sql = 'SELECT user_email, user_lang 
  						FROM ' /* @phpstan-ignore-line */ . USERS_TABLE . '
  						WHERE user_level = ' /* @phpstan-ignore-line */ . ADMIN;
  					
- 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
  					{
- 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not select Administrators', '', __LINE__, __FILE__, $sql);
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not select Administrators', '', __LINE__, __FILE__, $sql);
  					}
  					
- 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ while ($row = $db->sql_fetchrow($result))
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ while ($row = $db->sql_fetchrow($result))
  					{
- 						/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->from($board_config['board_email']);
- 						/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->replyto($board_config['board_email']);
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->from($board_config['board_email']);
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->replyto($board_config['board_email']);
  						
- 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->email_address(trim($row['user_email']));
- 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->use_template("admin_activate", $row['user_lang']);
- 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->set_subject($lang['Reactivate']);
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->email_address(trim($row['user_email']));
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->use_template("admin_activate", $row['user_lang']);
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedClass */ $emailer->set_subject($lang['Reactivate']);
  
- 						/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument, PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->assign_vars(array(
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument, PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument, PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, UndefinedClass */ $emailer->assign_vars(array(
  							/* @phpstan-ignore-line */ 'USERNAME' => preg_replace($unhtml_specialchars_match, $unhtml_specialchars_replace, substr(str_replace("\'", "'", $username), 0, 25)),
  							/* @phpstan-ignore-line */ 'EMAIL_SIG' => str_replace('<br />', "\n", "-- \n" . $board_config['board_email_sig']),
  
  							/* @phpstan-ignore-line */ 'U_ACTIVATE' => $server_url . '?mode=activate&' . POST_USERS_URL . '=' . $user_id . '&act_key=' . $user_actkey)
  						);
- 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->send();
- 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->reset();
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->send();
+ 						/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->reset();
  					}
- 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
+ 					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
  				}
 
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ $message = $lang['Profile_updated_inactive'] . '<br /><br />' . sprintf($lang['Click_return_index'],  '<a href="' . append_sid("index.$phpEx") . '">', '</a>');
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ $message = $lang['Profile_updated_inactive'] . '<br /><br />' . sprintf($lang['Click_return_index'],  '<a href="' . append_sid("index.$phpEx") . '">', '</a>');
 			}
 			else
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ $message = $lang['Profile_updated'] . '<br /><br />' . sprintf($lang['Click_return_index'],  '<a href="' . append_sid("index.$phpEx") . '">', '</a>');
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ $message = $lang['Profile_updated'] . '<br /><br />' . sprintf($lang['Click_return_index'],  '<a href="' . append_sid("index.$phpEx") . '">', '</a>');
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ $template->assign_vars(array(
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ $template->assign_vars(array(
 				/* @phpstan-ignore-line */ "META" => '<meta http-equiv="refresh" content="5;url=' . append_sid("index.$phpEx") . '">')
 			);
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_MESSAGE, $message);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_MESSAGE, $message);
 		}
 		else
 		{
 			$sql = "SELECT MAX(user_id) AS total
 				FROM " /* @phpstan-ignore-line */ . USERS_TABLE;
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain next user_id information', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain next user_id information', '', __LINE__, __FILE__, $sql);
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($row = $db->sql_fetchrow($result)) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($row = $db->sql_fetchrow($result)) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain next user_id information', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain next user_id information', '', __LINE__, __FILE__, $sql);
 			}
 			$user_id = $row['total'] + 1;
 
 			//
 			// Get current date
 			//
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidOperand, PossiblyUndefinedGlobalVariable */ $sql = "INSERT INTO " . USERS_TABLE . "	(user_id, username, user_regdate, user_password, user_email, user_icq, user_website, user_occ, user_from, user_interests, user_sig, user_sig_bbcode_uid, user_avatar, user_avatar_type, user_viewemail, user_aim, user_yim, user_msnm, user_attachsig, user_allowsmile, user_allowhtml, user_allowbbcode, user_allow_viewonline, user_notify, user_notify_pm, user_popup_pm, user_timezone, user_dateformat, user_lang, user_style, user_level, user_allow_pm, user_active, user_actkey)
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidOperand, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyInvalidOperand, PossiblyUndefinedGlobalVariable */ $sql = "INSERT INTO " . USERS_TABLE . "	(user_id, username, user_regdate, user_password, user_email, user_icq, user_website, user_occ, user_from, user_interests, user_sig, user_sig_bbcode_uid, user_avatar, user_avatar_type, user_viewemail, user_aim, user_yim, user_msnm, user_attachsig, user_allowsmile, user_allowhtml, user_allowbbcode, user_allow_viewonline, user_notify, user_notify_pm, user_popup_pm, user_timezone, user_dateformat, user_lang, user_style, user_level, user_allow_pm, user_active, user_actkey)
 				VALUES ($user_id, '" /* @phpstan-ignore-line */ . str_replace("\'", "''", $username) . "', " . time() . ", '" . str_replace("\'", "''", $new_password) . "', '" . str_replace("\'", "''", $email) . "', '" . str_replace("\'", "''", $icq) . "', '" . str_replace("\'", "''", $website) . "', '" . str_replace("\'", "''", $occupation) . "', '" . str_replace("\'", "''", $location) . "', '" . str_replace("\'", "''", $interests) . "', '" . str_replace("\'", "''", $signature) . "', '$signature_bbcode_uid', $avatar_sql, $viewemail, '" . str_replace("\'", "''", str_replace(' ', '+', $aim)) . "', '" . str_replace("\'", "''", $yim) . "', '" . str_replace("\'", "''", $msn) . "', $attachsig, $allowsmilies, $allowhtml, $allowbbcode, $allowviewonline, $notifyreply, $notifypm, $popup_pm, $user_timezone, '" . str_replace("\'", "''", $user_dateformat) . "', '" . str_replace("\'", "''", $user_lang) . "', $user_style, 0, 1, ";
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_SELF || $board_config['require_activation'] == USER_ACTIVATION_ADMIN || $coppa )
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_SELF || $board_config['require_activation'] == USER_ACTIVATION_ADMIN || $coppa )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $user_actkey = gen_rand_string(true);
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $key_len = 54 - (strlen($server_url));
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $user_actkey = gen_rand_string(true);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $key_len = 54 - (strlen($server_url));
 				$key_len = ( $key_len > 6 ) ? $key_len : 6;
 				$user_actkey = substr($user_actkey, 0, $key_len);
 				$sql .= "0, '" . str_replace("\'", "''", $user_actkey) . "')";
@@ -644,61 +644,61 @@ if ( isset($HTTP_POST_VARS['submit']) )
 				$sql .= "1, '')";
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ if ( !($result = $db->sql_query($sql, BEGIN_TRANSACTION)) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql, BEGIN_TRANSACTION)) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not insert data into users table', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not insert data into users table', '', __LINE__, __FILE__, $sql);
 			}
 
 			/* @phpstan-ignore-line */ $sql = "INSERT INTO " . GROUPS_TABLE . " (group_name, group_description, group_single_user, group_moderator)
 				VALUES ('', 'Personal User', 1, 0)";
-			/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ if ( !($result = $db->sql_query($sql)) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not insert data into groups table', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not insert data into groups table', '', __LINE__, __FILE__, $sql);
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $group_id = $db->sql_nextid();
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $group_id = $db->sql_nextid();
 
 			/* @phpstan-ignore-line */ $sql = "INSERT INTO " . USER_GROUP_TABLE . " (user_id, group_id, user_pending)
 				VALUES ($user_id, $group_id, 0)";
-			/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ if( !($result = $db->sql_query($sql, END_TRANSACTION)) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ if( !($result = $db->sql_query($sql, END_TRANSACTION)) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not insert data into user_group table', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not insert data into user_group table', '', __LINE__, __FILE__, $sql);
 			}
 
 			if ( $coppa )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $message = $lang['COPPA'];
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $message = $lang['COPPA'];
 				$email_template = 'coppa_welcome_inactive';
 			}
-			/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_SELF )
+			/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_SELF )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $message = $lang['Account_inactive'];
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $message = $lang['Account_inactive'];
 				$email_template = 'user_welcome_inactive';
 			}
-			/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_ADMIN )
+			/* @phpstan-ignore-line */ else /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_ADMIN )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $message = $lang['Account_inactive_admin'];
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $message = $lang['Account_inactive_admin'];
 				$email_template = 'admin_welcome_inactive';
 			}
 			else
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $message = $lang['Account_added'];
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $message = $lang['Account_added'];
 				$email_template = 'user_welcome';
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/emailer.'.$phpEx);
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass, PossiblyUndefinedGlobalVariable */ $emailer = new emailer($board_config['smtp_delivery']);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/emailer.'.$phpEx);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass, PossiblyUndefinedGlobalVariable */ $emailer = new emailer($board_config['smtp_delivery']);
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->from($board_config['board_email']);
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->replyto($board_config['board_email']);
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->from($board_config['board_email']);
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->replyto($board_config['board_email']);
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->use_template($email_template, stripslashes($user_lang));
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedClass */ $emailer->email_address($email);
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->set_subject(sprintf($lang['Welcome_subject'], $board_config['sitename']));
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->use_template($email_template, stripslashes($user_lang));
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedVariable, UndefinedClass */ $emailer->email_address($email);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->set_subject(sprintf($lang['Welcome_subject'], $board_config['sitename']));
 
 			if( $coppa )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument, DuplicateArrayKey */ /** @psalm-suppress UndefinedClass */ $emailer->assign_vars(array(
+				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument, DuplicateArrayKey, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument, DuplicateArrayKey, UndefinedClass */ $emailer->assign_vars(array(
 					/* @phpstan-ignore-line */ 'SITENAME' => $board_config['sitename'],
 					/* @phpstan-ignore-line */ 'WELCOME_MSG' => sprintf($lang['Welcome_subject'], $board_config['sitename']),
 					/* @phpstan-ignore-line */ 'USERNAME' => preg_replace($unhtml_specialchars_match, $unhtml_specialchars_replace, substr(str_replace("\'", "'", $username), 0, 25)),
@@ -720,7 +720,7 @@ if ( isset($HTTP_POST_VARS['submit']) )
 			}
 			else
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress UndefinedClass */ $emailer->assign_vars(array(
+				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, PossiblyInvalidCast, PossiblyInvalidArgument, UndefinedClass */ $emailer->assign_vars(array(
 					/* @phpstan-ignore-line */ 'SITENAME' => $board_config['sitename'],
 					/* @phpstan-ignore-line */ 'WELCOME_MSG' => sprintf($lang['Welcome_subject'], $board_config['sitename']),
 					/* @phpstan-ignore-line */ 'USERNAME' => preg_replace($unhtml_specialchars_match, $unhtml_specialchars_replace, substr(str_replace("\'", "'", $username), 0, 25)),
@@ -731,44 +731,44 @@ if ( isset($HTTP_POST_VARS['submit']) )
 				);
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->send();
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->reset();
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->send();
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->reset();
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_ADMIN )
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['require_activation'] == USER_ACTIVATION_ADMIN )
 			{
 				$sql = "SELECT user_email, user_lang 
 					FROM " /* @phpstan-ignore-line */ . USERS_TABLE . "
 					WHERE user_level = " /* @phpstan-ignore-line */ . ADMIN;
 				
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ( !($result = $db->sql_query($sql)) )
 				{
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not select Administrators', '', __LINE__, __FILE__, $sql);
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not select Administrators', '', __LINE__, __FILE__, $sql);
 				}
 				
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ while ($row = $db->sql_fetchrow($result))
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ while ($row = $db->sql_fetchrow($result))
 				{
-					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->from($board_config['board_email']);
-					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->replyto($board_config['board_email']);
+					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->from($board_config['board_email']);
+					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedClass */ $emailer->replyto($board_config['board_email']);
 					
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->email_address(trim($row['user_email']));
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->use_template("admin_activate", $row['user_lang']);
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->set_subject($lang['New_account_subject']);
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->email_address(trim($row['user_email']));
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->use_template("admin_activate", $row['user_lang']);
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedClass */ $emailer->set_subject($lang['New_account_subject']);
 
-					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument, PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedClass */ $emailer->assign_vars(array(
+					/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument, PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, UndefinedClass */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument, PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable, UndefinedClass */ $emailer->assign_vars(array(
 						/* @phpstan-ignore-line */ 'USERNAME' => preg_replace($unhtml_specialchars_match, $unhtml_specialchars_replace, substr(str_replace("\'", "'", $username), 0, 25)),
 						/* @phpstan-ignore-line */ 'EMAIL_SIG' => str_replace('<br />', "\n", "-- \n" . $board_config['board_email_sig']),
 
 						/* @phpstan-ignore-line */ 'U_ACTIVATE' => $server_url . '?mode=activate&' . POST_USERS_URL . '=' . $user_id . '&act_key=' . $user_actkey)
 					);
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->send();
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $emailer->reset();
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->send();
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $emailer->reset();
 				}
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ $message = $message . '<br /><br />' . sprintf($lang['Click_return_index'],  '<a href="' . append_sid("index.$phpEx") . '">', '</a>');
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ /** @psalm-suppress UndefinedGlobalVariable, UndefinedFunction */ $message = $message . '<br /><br />' . sprintf($lang['Click_return_index'],  '<a href="' . append_sid("index.$phpEx") . '">', '</a>');
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_MESSAGE, $message);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_MESSAGE, $message);
 		} // if mode == register
 	}
 } // End of submit
@@ -779,177 +779,177 @@ if ( $error )
 	//
 	// If an error occured we need to stripslashes on returned data // codespell:ignore occured
 	//
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $username = stripslashes($username);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $email = stripslashes($email);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $username = stripslashes($username);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $email = stripslashes($email);
 	$cur_password = '';
 	$new_password = '';
 	$password_confirm = '';
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $icq = stripslashes($icq);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $aim = str_replace('+', ' ', stripslashes($aim));
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $msn = stripslashes($msn);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $yim = stripslashes($yim);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $icq = stripslashes($icq);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $aim = str_replace('+', ' ', stripslashes($aim));
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $msn = stripslashes($msn);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $yim = stripslashes($yim);
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $website = stripslashes($website);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $location = stripslashes($location);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $occupation = stripslashes($occupation);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $interests = stripslashes($interests);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $signature = stripslashes($signature);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $signature = ($signature_bbcode_uid != '') ? preg_replace("/:(([a-z0-9]+:)?)$signature_bbcode_uid(=|\])/si", '\\3', $signature) : $signature;
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $website = stripslashes($website);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $location = stripslashes($location);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $occupation = stripslashes($occupation);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $interests = stripslashes($interests);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $signature = stripslashes($signature);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $signature = ($signature_bbcode_uid != '') ? preg_replace("/:(([a-z0-9]+:)?)$signature_bbcode_uid(=|\])/si", '\\3', $signature) : $signature;
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $user_lang = stripslashes($user_lang);
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $user_dateformat = stripslashes($user_dateformat);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $user_lang = stripslashes($user_lang);
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $user_dateformat = stripslashes($user_dateformat);
 
 }
 /* @phpstan-ignore-line */ else if ( $mode == 'editprofile' && !isset($HTTP_POST_VARS['avatargallery']) && !isset($HTTP_POST_VARS['submitavatar']) && !isset($HTTP_POST_VARS['cancelavatar']) )
 {
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_id = $userdata['user_id'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $username = $userdata['username'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $email = $userdata['user_email'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_id = $userdata['user_id'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $username = $userdata['username'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $email = $userdata['user_email'];
 	$cur_password = '';
 	$new_password = '';
 	$password_confirm = '';
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $icq = $userdata['user_icq'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $aim = str_replace('+', ' ', $userdata['user_aim']);
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $msn = $userdata['user_msnm'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $yim = $userdata['user_yim'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $icq = $userdata['user_icq'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $aim = str_replace('+', ' ', $userdata['user_aim']);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $msn = $userdata['user_msnm'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $yim = $userdata['user_yim'];
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $website = $userdata['user_website'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $location = $userdata['user_from'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $occupation = $userdata['user_occ'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $interests = $userdata['user_interests'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $signature_bbcode_uid = $userdata['user_sig_bbcode_uid'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $signature = ($signature_bbcode_uid != '') ? preg_replace("/:(([a-z0-9]+:)?)$signature_bbcode_uid(=|\])/si", '\\3', $userdata['user_sig']) : $userdata['user_sig'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $website = $userdata['user_website'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $location = $userdata['user_from'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $occupation = $userdata['user_occ'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $interests = $userdata['user_interests'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $signature_bbcode_uid = $userdata['user_sig_bbcode_uid'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $signature = ($signature_bbcode_uid != '') ? preg_replace("/:(([a-z0-9]+:)?)$signature_bbcode_uid(=|\])/si", '\\3', $userdata['user_sig']) : $userdata['user_sig'];
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $viewemail = $userdata['user_viewemail'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $notifypm = $userdata['user_notify_pm'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $popup_pm = $userdata['user_popup_pm'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $notifyreply = $userdata['user_notify'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $attachsig = $userdata['user_attachsig'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowhtml = $userdata['user_allowhtml'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowbbcode = $userdata['user_allowbbcode'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowsmilies = $userdata['user_allowsmile'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $allowviewonline = $userdata['user_allow_viewonline'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $viewemail = $userdata['user_viewemail'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $notifypm = $userdata['user_notify_pm'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $popup_pm = $userdata['user_popup_pm'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $notifyreply = $userdata['user_notify'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $attachsig = $userdata['user_attachsig'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowhtml = $userdata['user_allowhtml'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowbbcode = $userdata['user_allowbbcode'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowsmilies = $userdata['user_allowsmile'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $allowviewonline = $userdata['user_allow_viewonline'];
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar = ( $userdata['user_allowavatar'] ) ? $userdata['user_avatar'] : '';
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar_type = ( $userdata['user_allowavatar'] ) ? $userdata['user_avatar_type'] : USER_AVATAR_NONE;
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar = ( $userdata['user_allowavatar'] ) ? $userdata['user_avatar'] : '';
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_avatar_type = ( $userdata['user_allowavatar'] ) ? $userdata['user_avatar_type'] : USER_AVATAR_NONE;
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_style = $userdata['user_style'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_lang = $userdata['user_lang'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_timezone = $userdata['user_timezone'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $user_dateformat = $userdata['user_dateformat'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_style = $userdata['user_style'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_lang = $userdata['user_lang'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_timezone = $userdata['user_timezone'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $user_dateformat = $userdata['user_dateformat'];
 }
 
 //
 // Default pages
 //
-/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/page_header.'.$phpEx);
+/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/page_header.'.$phpEx);
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ make_jumpbox('viewforum.'.$phpEx);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ make_jumpbox('viewforum.'.$phpEx);
 
 /* @phpstan-ignore-line */ if ( $mode == 'editprofile' )
 {
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ( $user_id != $userdata['user_id'] )
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ if ( $user_id != $userdata['user_id'] )
 	{
 		$error = TRUE;
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg = $lang['Wrong_Profile'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $error_msg = $lang['Wrong_Profile'];
 	}
 }
 
 if( isset($HTTP_POST_VARS['avatargallery']) && !$error )
 {
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/usercp_avatar.'.$phpEx);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/usercp_avatar.'.$phpEx);
 
 	$avatar_category = ( !empty($HTTP_POST_VARS['avatarcategory']) ) ? htmlspecialchars($HTTP_POST_VARS['avatarcategory']) : '';
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->set_filenames(array(
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->set_filenames(array(
 		'body' => 'profile_avatar_gallery.tpl')
 	);
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $allowviewonline = !$allowviewonline;
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $allowviewonline = !$allowviewonline;
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable, UndefinedGlobalVariable */ display_avatar_gallery($mode, $avatar_category, $user_id, $email, $current_email, $coppa, $username, $email, $new_password, $cur_password, $password_confirm, $icq, $aim, $msn, $yim, $website, $location, $occupation, $interests, $signature, $viewemail, $notifypm, $popup_pm, $notifyreply, $attachsig, $allowhtml, $allowbbcode, $allowsmilies, $allowviewonline, $user_style, $user_lang, $user_timezone, $user_dateformat, $userdata['session_id']);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable, UndefinedGlobalVariable */ display_avatar_gallery($mode, $avatar_category, $user_id, $email, $current_email, $coppa, $username, $email, $new_password, $cur_password, $password_confirm, $icq, $aim, $msn, $yim, $website, $location, $occupation, $interests, $signature, $viewemail, $notifypm, $popup_pm, $notifyreply, $attachsig, $allowhtml, $allowbbcode, $allowsmilies, $allowviewonline, $user_style, $user_lang, $user_timezone, $user_dateformat, $userdata['session_id']);
 }
 else
 {
-	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/functions_selects.'.$phpEx);
+	/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/functions_selects.'.$phpEx);
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress TypeDoesNotContainNull */ if ( !isset($coppa) )
+	/* @phpstan-ignore-line */ /** @psalm-suppress TypeDoesNotContainNull */ /** @psalm-suppress TypeDoesNotContainNull */ if ( !isset($coppa) )
 	{
 		$coppa = FALSE;
 	}
 
 	if ( !isset($user_style) )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $user_style = $board_config['default_style'];
+		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $user_style = $board_config['default_style'];
 	}
 
 	$avatar_img = '';
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $user_avatar_type )
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $user_avatar_type )
 	{
 		switch( $user_avatar_type )
 		{
 			/* @phpstan-ignore-line */ case USER_AVATAR_UPLOAD:
-				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $avatar_img = ( $board_config['allow_avatar_upload'] ) ? '<img src="' . $board_config['avatar_path'] . '/' . $user_avatar . '" alt="" />' : '';
+				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $avatar_img = ( $board_config['allow_avatar_upload'] ) ? '<img src="' . $board_config['avatar_path'] . '/' . $user_avatar . '" alt="" />' : '';
 				break;
 			/* @phpstan-ignore-line */ case USER_AVATAR_REMOTE:
-				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $avatar_img = ( $board_config['allow_avatar_remote'] ) ? '<img src="' . $user_avatar . '" alt="" />' : '';
+				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $avatar_img = ( $board_config['allow_avatar_remote'] ) ? '<img src="' . $user_avatar . '" alt="" />' : '';
 				break;
 			/* @phpstan-ignore-line */ case USER_AVATAR_GALLERY:
-				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $avatar_img = ( $board_config['allow_avatar_local'] ) ? '<img src="' . $board_config['avatar_gallery_path'] . '/' . $user_avatar . '" alt="" />' : '';
+				/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $avatar_img = ( $board_config['allow_avatar_local'] ) ? '<img src="' . $board_config['avatar_gallery_path'] . '/' . $user_avatar . '" alt="" />' : '';
 				break;
 		}
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress InvalidOperand */ $s_hidden_fields = '<input type="hidden" name="mode" value="' . $mode . '" /><input type="hidden" name="agreed" value="true" /><input type="hidden" name="coppa" value="' . $coppa . '" />';
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $s_hidden_fields .= '<input type="hidden" name="sid" value="' . $userdata['session_id'] . '" />';
+	/* @phpstan-ignore-line */ /** @psalm-suppress InvalidOperand */ /** @psalm-suppress InvalidOperand */ $s_hidden_fields = '<input type="hidden" name="mode" value="' . $mode . '" /><input type="hidden" name="agreed" value="true" /><input type="hidden" name="coppa" value="' . $coppa . '" />';
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $s_hidden_fields .= '<input type="hidden" name="sid" value="' . $userdata['session_id'] . '" />';
 	/* @phpstan-ignore-line */ if( $mode == 'editprofile' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $s_hidden_fields .= '<input type="hidden" name="user_id" value="' . $userdata['user_id'] . '" />';
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $s_hidden_fields .= '<input type="hidden" name="user_id" value="' . $userdata['user_id'] . '" />';
 		//
 		// Send the users current email address. If they change it, and account activation is turned on
 		// the user account will be disabled and the user will have to reactivate their account.
 		//
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $s_hidden_fields .= '<input type="hidden" name="current_email" value="' . $userdata['user_email'] . '" />';
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $s_hidden_fields .= '<input type="hidden" name="current_email" value="' . $userdata['user_email'] . '" />';
 	}
 
 	if ( !empty($user_avatar_local) )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $s_hidden_fields .= '<input type="hidden" name="avatarlocal" value="' . $user_avatar_local . '" /><input type="hidden" name="avatarcatname" value="' . $user_avatar_category . '" />';
+		/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $s_hidden_fields .= '<input type="hidden" name="avatarlocal" value="' . $user_avatar_local . '" /><input type="hidden" name="avatarcatname" value="' . $user_avatar_category . '" />';
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ $html_status =  ( $userdata['user_allowhtml'] && $board_config['allow_html'] ) ? $lang['HTML_is_ON'] : $lang['HTML_is_OFF'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ $bbcode_status = ( $userdata['user_allowbbcode'] && $board_config['allow_bbcode']  ) ? $lang['BBCode_is_ON'] : $lang['BBCode_is_OFF'];
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ $smilies_status = ( $userdata['user_allowsmile'] && $board_config['allow_smilies']  ) ? $lang['Smilies_are_ON'] : $lang['Smilies_are_OFF'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ $html_status =  ( $userdata['user_allowhtml'] && $board_config['allow_html'] ) ? $lang['HTML_is_ON'] : $lang['HTML_is_OFF'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ $bbcode_status = ( $userdata['user_allowbbcode'] && $board_config['allow_bbcode']  ) ? $lang['BBCode_is_ON'] : $lang['BBCode_is_OFF'];
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ $smilies_status = ( $userdata['user_allowsmile'] && $board_config['allow_smilies']  ) ? $lang['Smilies_are_ON'] : $lang['Smilies_are_OFF'];
 
 	if ( $error )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->set_filenames(array(
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->set_filenames(array(
 			'reg_header' => 'error_body.tpl')
 		);
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_vars(array(
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_vars(array(
 			'ERROR_MESSAGE' => $error_msg)
 		);
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_var_from_handle('ERROR_BOX', 'reg_header');
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_var_from_handle('ERROR_BOX', 'reg_header');
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->set_filenames(array(
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->set_filenames(array(
 		'body' => 'profile_add_body.tpl')
 	);
 
 	/* @phpstan-ignore-line */ if ( $mode == 'editprofile' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_edit_profile', array());
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_edit_profile', array());
 	}
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( ($mode == 'register') || ($board_config['allow_namechange']) )
+	/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( ($mode == 'register') || ($board_config['allow_namechange']) )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_namechange_allowed', array());
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_namechange_allowed', array());
 	}
 	else
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_namechange_disallowed', array());
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_namechange_disallowed', array());
 	}
 
 
@@ -959,15 +959,15 @@ else
 	{
 		$sql = 'SELECT session_id 
 			FROM ' /* @phpstan-ignore-line */ . SESSIONS_TABLE; 
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if (!($result = $db->sql_query($sql)))
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if (!($result = $db->sql_query($sql)))
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not select session data', '', __LINE__, __FILE__, $sql);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not select session data', '', __LINE__, __FILE__, $sql);
 		}
 
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ($row = $db->sql_fetchrow($result))
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ($row = $db->sql_fetchrow($result))
 		{
 			$confirm_sql = '';
-			/** @psalm-suppress UndefinedGlobalVariable */ do
+			/** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ do
 			{
 				$confirm_sql .= (($confirm_sql != '') ? ', ' : '') . "'" . $row['session_id'] . "'";
 			}
@@ -975,50 +975,50 @@ else
 		
 			/* @phpstan-ignore-line */ $sql = 'DELETE FROM ' .  CONFIRM_TABLE . " 
 				WHERE session_id NOT IN ($confirm_sql)";
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if (!$db->sql_query($sql))
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if (!$db->sql_query($sql))
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not delete stale confirm data', '', __LINE__, __FILE__, $sql);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not delete stale confirm data', '', __LINE__, __FILE__, $sql);
 			}
 		}
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
 
-		/** @psalm-suppress UndefinedGlobalVariable */ $sql = 'SELECT COUNT(session_id) AS attempts 
+		/** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $sql = 'SELECT COUNT(session_id) AS attempts 
 			FROM ' /* @phpstan-ignore-line */ . CONFIRM_TABLE . " 
 			WHERE session_id = '" /* @phpstan-ignore-line */ . $userdata['session_id'] . "'";
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if (!($result = $db->sql_query($sql)))
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if (!($result = $db->sql_query($sql)))
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain confirm code count', '', __LINE__, __FILE__, $sql);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not obtain confirm code count', '', __LINE__, __FILE__, $sql);
 		}
 
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ($row = $db->sql_fetchrow($result))
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if ($row = $db->sql_fetchrow($result))
 		{
 			if ($row['attempts'] > 3)
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ message_die(GENERAL_MESSAGE, $lang['Too_many_registers']);
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ message_die(GENERAL_MESSAGE, $lang['Too_many_registers']);
 			}
 		}
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $db->sql_freeresult($result);
 		
 		// Generate the required confirmation code
 		// NB 0 (zero) could get confused with O (the letter) so we make change it
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $code = dss_rand();
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $code = dss_rand();
 		$code = substr(str_replace('0', 'Z', strtoupper(base_convert($code, 16, 35))), 2, 6);
 
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $confirm_id = md5(uniqid($user_ip));
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $confirm_id = md5(uniqid($user_ip));
 
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $sql = 'INSERT INTO ' . CONFIRM_TABLE . " (confirm_id, session_id, code) 
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $sql = 'INSERT INTO ' . CONFIRM_TABLE . " (confirm_id, session_id, code) 
 			VALUES ('$confirm_id', '"/* @phpstan-ignore-line */ . $userdata['session_id'] . "', '$code')";
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if (!$db->sql_query($sql))
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if (!$db->sql_query($sql))
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not insert new confirm code information', '', __LINE__, __FILE__, $sql);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ message_die(GENERAL_ERROR, 'Could not insert new confirm code information', '', __LINE__, __FILE__, $sql);
 		}
 
 		unset($code);
 		
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ $confirm_image = '<img src="' . append_sid("profile.$phpEx?mode=confirm&amp;id=$confirm_id") . '" alt="" title="" />';
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ /** @psalm-suppress UndefinedFunction, UndefinedGlobalVariable */ $confirm_image = '<img src="' . append_sid("profile.$phpEx?mode=confirm&amp;id=$confirm_id") . '" alt="" title="" />';
 		$s_hidden_fields .= '<input type="hidden" name="confirm_id" value="' . $confirm_id . '" />';
 
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_confirm', array());
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_confirm', array());
 	}
 
 
@@ -1027,9 +1027,9 @@ else
 	// us from doing file uploads....
 	//
 	$ini_val = ( phpversion() >= '4.0.0' ) ? 'ini_get' : 'get_cfg_var';
-	/* @phpstan-ignore-line */ /** @psalm-suppress InvalidScalarArgument, PossiblyUndefinedGlobalVariable */ $form_enctype = ( @$ini_val('file_uploads') == '0' || strtolower(@$ini_val('file_uploads') == 'off') || phpversion() == '4.0.4pl1' || !$board_config['allow_avatar_upload'] || ( phpversion() < '4.0.3' && @$ini_val('open_basedir') != '' ) ) ? '' : 'enctype="multipart/form-data"';
+	/* @phpstan-ignore-line */ /** @psalm-suppress InvalidScalarArgument, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress InvalidScalarArgument, PossiblyUndefinedGlobalVariable */ $form_enctype = ( @$ini_val('file_uploads') == '0' || strtolower(@$ini_val('file_uploads') == 'off') || phpversion() == '4.0.4pl1' || !$board_config['allow_avatar_upload'] || ( phpversion() < '4.0.3' && @$ini_val('open_basedir') != '' ) ) ? '' : 'enctype="multipart/form-data"';
 
-	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable, UndefinedFunction, PossiblyUndefinedVariable */ $template->assign_vars(array(
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable, UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable, UndefinedFunction, PossiblyUndefinedVariable */ $template->assign_vars(array(
 		'USERNAME' => isset($username) ? $username : '',
 		'CUR_PASSWORD' => isset($cur_password) ? $cur_password : '',
 		'NEW_PASSWORD' => isset($new_password) ? $new_password : '',
@@ -1149,35 +1149,35 @@ else
 	//
 	/* @phpstan-ignore-line */ if ( $mode != 'register' )
 	{
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ if ( $userdata['user_allowavatar'] && ( $board_config['allow_avatar_upload'] || $board_config['allow_avatar_local'] || $board_config['allow_avatar_remote'] ) )
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ if ( $userdata['user_allowavatar'] && ( $board_config['allow_avatar_upload'] || $board_config['allow_avatar_local'] || $board_config['allow_avatar_remote'] ) )
 		{
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block', array() );
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block', array() );
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ if ( $board_config['allow_avatar_upload'] && file_exists(@phpbb_realpath('./' . $board_config['avatar_path'])) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ if ( $board_config['allow_avatar_upload'] && file_exists(@phpbb_realpath('./' . $board_config['avatar_path'])) )
 			{
 				if ( $form_enctype != '' )
 				{
-					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block.switch_avatar_local_upload', array() );
+					/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block.switch_avatar_local_upload', array() );
 				}
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block.switch_avatar_remote_upload', array() );
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block.switch_avatar_remote_upload', array() );
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['allow_avatar_remote'] )
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ if ( $board_config['allow_avatar_remote'] )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block.switch_avatar_remote_link', array() );
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block.switch_avatar_remote_link', array() );
 			}
 
-			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ if ( $board_config['allow_avatar_local'] && file_exists(@phpbb_realpath('./' . $board_config['avatar_gallery_path'])) )
+			/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedFunction */ if ( $board_config['allow_avatar_local'] && file_exists(@phpbb_realpath('./' . $board_config['avatar_gallery_path'])) )
 			{
-				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block.switch_avatar_local_gallery', array() );
+				/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->assign_block_vars('switch_avatar_block.switch_avatar_local_gallery', array() );
 			}
 		}
 	}
 }
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $template->pparse('body');
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $template->pparse('body');
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/page_tail.'.$phpEx);
+/* @phpstan-ignore-line */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ /** @psalm-suppress UnresolvableInclude, UndefinedGlobalVariable */ include($phpbb_root_path . 'includes/page_tail.'.$phpEx);
 
 ?>
 <?php // jscpd:ignore-end ?>

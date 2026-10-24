@@ -3,20 +3,20 @@
 // jscpd:ignore-start
 
 
-/* @phpstan-ignore-line */ /** @psalm-suppress MissingFile */ require_once("base/db.php");
-/* @phpstan-ignore-line */ /** @psalm-suppress MissingFile */ require_once("base/global.php");
+/* @phpstan-ignore-line */ /** @psalm-suppress MissingFile */ /** @psalm-suppress MissingFile */ require_once("base/db.php");
+/* @phpstan-ignore-line */ /** @psalm-suppress MissingFile */ /** @psalm-suppress MissingFile */ require_once("base/global.php");
 	
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $sqlConnection = new MySQL_Service();
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $sqlConnection->initConnection();
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $sqlConnection->useDatabase($sqlConnection->db_database);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $sqlConnection = new MySQL_Service();
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $sqlConnection->initConnection();
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $sqlConnection->useDatabase($sqlConnection->db_database);
 
 
 /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id=$_GET['filename'];
 
-/** @psalm-suppress MissingReturnType, MissingParamType, UnusedParam */ function getfile($id,$val,$p_charid){
+/** @psalm-suppress MissingReturnType, MissingParamType, UnusedParam */ /** @psalm-suppress MissingReturnType, MissingParamType, UnusedParam */ function getfile($id,$val,$p_charid){
 	global $sqlConnection;
 	$old = $id;
-	/* @phpstan-ignore-line */ /** @psalm-suppress InvalidScalarArgument */ $name = md5(time());
+	/* @phpstan-ignore-line */ /** @psalm-suppress InvalidScalarArgument */ /** @psalm-suppress InvalidScalarArgument */ $name = md5(time());
 	/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $e_charid = $p_charid;
 
 	$savefile= "/home/strobelix/screenshots/$name.jpg";
@@ -24,26 +24,26 @@
 	
 	if($ch = curl_init ($id)){
 		if($fp = fopen ($savefile, "w")){
-			/** @psalm-suppress UndefinedConstant */ curl_setopt ($ch, CURLOPT_FILE, $fp);
-			/** @psalm-suppress UndefinedConstant */ curl_setopt ($ch, CURLOPT_HEADER, 0);
+			/** @psalm-suppress UndefinedConstant */ /** @psalm-suppress UndefinedConstant */ curl_setopt ($ch, CURLOPT_FILE, $fp);
+			/** @psalm-suppress UndefinedConstant */ /** @psalm-suppress UndefinedConstant */ curl_setopt ($ch, CURLOPT_HEADER, 0);
 			curl_exec ($ch);
 			curl_close ($ch);
 			fclose ($fp);
 		}
-		/** @psalm-suppress ForbiddenCode, PossiblyNullArgument, PossiblyFalseArgument */ $hash = substr(shell_exec("md5sum /home/strobelix/screenshots/$name.jpg"),0,32);	
+		/** @psalm-suppress ForbiddenCode, PossiblyNullArgument, PossiblyFalseArgument */ /** @psalm-suppress ForbiddenCode, PossiblyNullArgument, PossiblyFalseArgument */ $hash = substr(shell_exec("md5sum /home/strobelix/screenshots/$name.jpg"),0,32);	
 		$e_charid = @$_SERVER['HTTP_EVE_CHARID'];
 		$datetaken = time();
-		/** @psalm-suppress UndefinedClass */ $sqlConnection->runExecute("INSERT INTO eve_sshots VALUES ('','$e_charid','$savefile','$hash','$datetaken','$val')");
+		/** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $sqlConnection->runExecute("INSERT INTO eve_sshots VALUES ('','$e_charid','$savefile','$hash','$datetaken','$val')");
 	}
 	else{
 		$e_charid = @$_SERVER['HTTP_EVE_CHARID'];
 		$datetaken = time();
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedVariable */ /** @psalm-suppress UndefinedClass */ $sqlConnection->runExecute("INSERT INTO eve_sshots VALUES ('','$e_charid','$old','$hash','$datetaken','$val')");
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedVariable, UndefinedClass */ /** @psalm-suppress UndefinedVariable, UndefinedClass */ $sqlConnection->runExecute("INSERT INTO eve_sshots VALUES ('','$e_charid','$old','$hash','$datetaken','$val')");
 	}
 }
 
 
-/** @psalm-suppress MissingReturnType, MissingParamType */ function url_exists($url) {
+/** @psalm-suppress MissingReturnType, MissingParamType */ /** @psalm-suppress MissingReturnType, MissingParamType */ function url_exists($url) {
     /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ if (!$fp = curl_init($url)) return false;
     return true;
 }
@@ -52,7 +52,7 @@ $e_corpid = @$_SERVER['HTTP_EVE_CORPID'];
 $e_charid = @$_SERVER['HTTP_EVE_CHARID'];
 
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ if($sqlConnection->runCheck("SELECT * FROM eve_applications WHERE p_charid='".$e_charid."'")){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ if($sqlConnection->runCheck("SELECT * FROM eve_applications WHERE p_charid='".$e_charid."'")){
 	if($e_corpid=="713611672"){
 
 		echo("<br>	
@@ -65,7 +65,7 @@ $e_charid = @$_SERVER['HTTP_EVE_CHARID'];
 			$e_charid = $_SERVER['HTTP_EVE_CHARID'];
 	
 		
-			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $rowf = $sqlConnection->runSelect("SELECT * FROM eve_applications WHERE p_charid='$e_charid'");
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $rowf = $sqlConnection->runSelect("SELECT * FROM eve_applications WHERE p_charid='$e_charid'");
 			$e_status = $rowf[17];
 		
 			if($e_status<3){
@@ -91,7 +91,7 @@ $e_charid = @$_SERVER['HTTP_EVE_CHARID'];
 	}
 }
 else {
-/** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['apply']){
+/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if($_GET['apply']){
 	
 	/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $p_char = $_SERVER['HTTP_EVE_CHARNAME'];
 	$p_charid = $_SERVER['HTTP_EVE_CHARID'];
@@ -110,9 +110,9 @@ else {
 	$p_terms = $_POST['p_terms'];
 	$p_refer = $_POST['p_refer'];
 	
-	/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_skills)<100){ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $data = "bad";}
+	/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_skills)<100){ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $data = "bad";}
 	
-	/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_login)>10){ 
+	/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_login)>10){ 
 		if(url_exists($p_login)){ 
 			getfile($p_login,0,$p_charid);
 			/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $data = "";
@@ -125,7 +125,7 @@ else {
 		/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $data = "bad";
 	}
 	
-	/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char1)>10){ 
+	/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char1)>10){ 
 		if(url_exists($p_char1)){ 
 			getfile($p_char1,1,$p_charid);
 			/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $data = "";
@@ -138,7 +138,7 @@ else {
 		/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $data = "bad";
 	}
 	
-	/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char2)>10){ 
+	/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char2)>10){ 
 		if(url_exists($p_char2)){ 
 			getfile($p_char2,1,$p_charid);
 			/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $data = "";
@@ -151,7 +151,7 @@ else {
 		/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $data = "";
 	}
 	
-	/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char3)>10){ 
+	/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char3)>10){ 
 		if(url_exists($p_char3)){ 
 			getfile($p_char3,1,$p_charid);
 			$data = "";
@@ -165,21 +165,21 @@ else {
 	}
 		
 	
-	/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_name)<3){ $data = "bad";}
+	/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_name)<3){ $data = "bad";}
 	
 	if($p_age<10){ $data = "bad";}
 	
-	/** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ if(!stristr($p_start,":")){ $data = "bad";}
+	/** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ if(!stristr($p_start,":")){ $data = "bad";}
 	
-	/** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ if(!stristr($p_end,":")){ $data = "bad";}
+	/** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress RiskyTruthyFalsyComparison, PossiblyInvalidCast, PossiblyInvalidArgument */ if(!stristr($p_end,":")){ $data = "bad";}
 	
-	/** @psalm-suppress RiskyTruthyFalsyComparison, InvalidOperand */ if(!$p_days>=1){ $data = "bad";}
+	/** @psalm-suppress RiskyTruthyFalsyComparison, InvalidOperand */ /** @psalm-suppress RiskyTruthyFalsyComparison, InvalidOperand */ if(!$p_days>=1){ $data = "bad";}
 
-	/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_about)<30){ $data = "bad";}
+	/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_about)<30){ $data = "bad";}
 	
-	/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_goals)<30){ $data = "bad";}
+	/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_goals)<30){ $data = "bad";}
 	
-	/** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_terms){ $data = "bad";}
+	/** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_terms){ $data = "bad";}
 	
 	
 	
@@ -187,23 +187,23 @@ else {
 	
 	$p_char = $_SERVER['HTTP_EVE_CHARNAME'];
 	$p_charid = $_SERVER['HTTP_EVE_CHARID'];
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_skills = rawurlencode($_POST['p_skills']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_login = addslashes($_POST['p_login']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_char1 = addslashes($_POST['p_char1']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_char2 = addslashes($_POST['p_char2']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_char3 = addslashes($_POST['p_char3']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_name = addslashes($_POST['p_name']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_age = addslashes($_POST['p_age']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_start = addslashes($_POST['p_start']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_end = addslashes($_POST['p_end']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_days = addslashes($_POST['p_days']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_about = addslashes($_POST['p_about']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_goals = addslashes($_POST['p_goals']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_terms = addslashes($_POST['p_terms']);
-	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_refer = addslashes($_POST['p_refer']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_skills = rawurlencode($_POST['p_skills']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_login = addslashes($_POST['p_login']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_char1 = addslashes($_POST['p_char1']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_char2 = addslashes($_POST['p_char2']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_char3 = addslashes($_POST['p_char3']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_name = addslashes($_POST['p_name']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_age = addslashes($_POST['p_age']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_start = addslashes($_POST['p_start']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_end = addslashes($_POST['p_end']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_days = addslashes($_POST['p_days']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_about = addslashes($_POST['p_about']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_goals = addslashes($_POST['p_goals']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_terms = addslashes($_POST['p_terms']);
+	/** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidCast, PossiblyInvalidArgument */ $p_refer = addslashes($_POST['p_refer']);
 	$p_date = time();
 			
-		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ $sqlConnection->runExecute("insert into eve_applications  values('','$p_char','$p_charid','$p_skills','$p_login','$p_char1',	'$p_char2','$p_char3','$p_name','$p_age','$p_start','$p_end','$p_days','$p_about','$p_goals','$p_terms','$p_refer','0','$p_date','')");
+		/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedClass */ /** @psalm-suppress UndefinedClass */ $sqlConnection->runExecute("insert into eve_applications  values('','$p_char','$p_charid','$p_skills','$p_login','$p_char1',	'$p_char2','$p_char3','$p_name','$p_age','$p_start','$p_end','$p_days','$p_about','$p_goals','$p_terms','$p_refer','0','$p_date','')");
 		
 		echo("<br>
 	<h2>Membership Application</h2>
@@ -244,7 +244,7 @@ else {
 		<td align=left valign=top width=200>Primary Character Name</td><td align=left><?php print $_SERVER['HTTP_EVE_CHARNAME']; ?> ( <?php print $_SERVER['HTTP_EVE_CHARID']; ?> )</td>
 		</tr>
 		<tr>
-		<td align=left valign=top width=200>Primary Character Skills</td><td align=left><?php /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_skills)<100){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><textarea cols=35 rows=5  name='p_skills'><?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_skills; ?></textarea></td>
+		<td align=left valign=top width=200>Primary Character Skills</td><td align=left><?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_skills)<100){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><textarea cols=35 rows=5  name='p_skills'><?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_skills; ?></textarea></td>
 		</tr>
 		
 		
@@ -268,7 +268,7 @@ else {
 		<td align=left valign=top width=200>Login Screenshot</td><td align=left>
 		
 		<?php 
-		/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_login)>10){ 
+		/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_login)>10){ 
 			if(url_exists($p_login)){
 			
 			}
@@ -281,7 +281,7 @@ else {
 		}
 		?>
 		
-		<input type=text name='p_login' value='<?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_login; ?>'><br />eg. http://mydomain.com/login-screenshot.jpg</td>
+		<input type=text name='p_login' value='<?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_login; ?>'><br />eg. http://mydomain.com/login-screenshot.jpg</td>
 		</tr>
 		
 			<tr>
@@ -293,7 +293,7 @@ else {
 		<tr>
 		<td align=left valign=top width=200>Character Selection Screenshot 1</td><td align=left>
 		<?php 
-		/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char1)>10){ 
+		/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char1)>10){ 
 			if(url_exists($p_char1)){
 			
 			}
@@ -306,13 +306,13 @@ else {
 		}
 		?>
 		
-		<input type=text name='p_char1' value='<?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_char1; ?>'><br />eg. http://mydomain.com/login-screenshot.jpg</td>
+		<input type=text name='p_char1' value='<?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_char1; ?>'><br />eg. http://mydomain.com/login-screenshot.jpg</td>
 		</tr>
 		
 		<tr>
 		<td align=left valign=top width=200>Character Selection Screenshot 2</td><td align=left>
 		<?php 
-		/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char2)>10){ 
+		/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char2)>10){ 
 			if(url_exists($p_char2)){
 			
 			}
@@ -321,13 +321,13 @@ else {
 			}
 		} 
 		?>
-		<input type=text name='p_char2' value='<?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_char2; ?>'></td>
+		<input type=text name='p_char2' value='<?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_char2; ?>'></td>
 		</tr>
 		
 				<tr>
 		<td align=left valign=top width=200>Character Selection Screenshot 3</td><td align=left>
 				<?php 
-		/** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char3)>10){ 
+		/** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_char3)>10){ 
 			if(url_exists($p_char3)){
 			
 			}
@@ -336,7 +336,7 @@ else {
 			}
 		} 
 		?>
-		<input type=text name='p_char3' value='<?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_char3; ?>'></td>
+		<input type=text name='p_char3' value='<?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_char3; ?>'></td>
 		</tr>
 		
 		<tr>
@@ -359,11 +359,11 @@ You can put your screenshots on this site <a href='shellexec:http://beta.localho
 		
 		
 				<tr>
-		<td align=left valign=top width=200>Name </td><td><?php /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_name){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><input type=text value='<?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_name; ?>' name="p_name" /></td>
+		<td align=left valign=top width=200>Name </td><td><?php /** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_name){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><input type=text value='<?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_name; ?>' name="p_name" /></td>
 		</tr>
 		
 		<tr>
-		<td align=left valign=top width=200>Age </td><td width=500><?php /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_age){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><select name=p_age>
+		<td align=left valign=top width=200>Age </td><td width=500><?php /** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_age){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><select name=p_age>
 		<?php
 		print "<option value=''>Select</option>";
 		for($u=10;$u<70;$u++){
@@ -378,11 +378,11 @@ You can put your screenshots on this site <a href='shellexec:http://beta.localho
 		</tr>
 		
 				<tr>
-		<td align=left valign=top width=200>Country </td><td><?php /* @phpstan-ignore-line */ /** @psalm-suppress MissingFile */ include("./features/ip2country.php"); ?></td>
+		<td align=left valign=top width=200>Country </td><td><?php /* @phpstan-ignore-line */ /** @psalm-suppress MissingFile */ /** @psalm-suppress MissingFile */ include("./features/ip2country.php"); ?></td>
 		</tr>
 		
 			<tr>
-		<td align=left valign=top width=200>Play time </td><td width=500><?php /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_start){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><select size=5 name=p_start>
+		<td align=left valign=top width=200>Play time </td><td width=500><?php /** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_start){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><select size=5 name=p_start>
 		<?php
 		
 		for($u=1;$u<25;$u++){
@@ -391,7 +391,7 @@ You can put your screenshots on this site <a href='shellexec:http://beta.localho
 		print ">$u:00 Eve Time</option>";
 		}
 		?>
-		</select> to <?php /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_end){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><select size=5 name=p_end>
+		</select> to <?php /** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_end){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><select size=5 name=p_end>
 		<?php
 		
 		for($u=1;$u<25;$u++){
@@ -407,7 +407,7 @@ You can put your screenshots on this site <a href='shellexec:http://beta.localho
 		
 			<tr>
 		<td align=left valign=top width=200>Days a Week</td><td>
-		<?php /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_days){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?>
+		<?php /** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_days){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?>
 		1 <input type="radio" name="p_days" value="1" <?php if($p_days=="1"){ echo "checked";} ?> /> 
 		2 <input type="radio" name="p_days" value="2" <?php if($p_days=="2"){ echo "checked";} ?> /> 
 		3 <input type="radio" name="p_days" value="3" <?php if($p_days=="3"){ echo "checked";} ?> /> 
@@ -420,21 +420,21 @@ You can put your screenshots on this site <a href='shellexec:http://beta.localho
 		</tr>
 		
 		<tr>
-		<td align=left valign=top width=200>A few words About Me and <?php print $_SERVER['HTTP_EVE_CHARNAME']; ?></td><td align=left><?php /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_about)<30){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><textarea cols=35 rows=5  name='p_about'><?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_about; ?></textarea></td>
+		<td align=left valign=top width=200>A few words About Me and <?php print $_SERVER['HTTP_EVE_CHARNAME']; ?></td><td align=left><?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_about)<30){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><textarea cols=35 rows=5  name='p_about'><?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_about; ?></textarea></td>
 		</tr>
 		
 		<tr>
-		<td align=left valign=top width=200>Why you would like to become a member and what would you like to achieve in Unknown Heroes.</td><td align=left><?php /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_goals)<30){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><textarea cols=35 rows=5  name='p_goals'><?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_goals; ?></textarea></td>
+		<td align=left valign=top width=200>Why you would like to become a member and what would you like to achieve in Unknown Heroes.</td><td align=left><?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ if(strlen($p_goals)<30){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><textarea cols=35 rows=5  name='p_goals'><?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_goals; ?></textarea></td>
 		</tr>	
 		
 		
 		
 		<tr>
 			<td colspan=2 width=700>
-<?php /* @phpstan-ignore-line */ /** @psalm-suppress UnusedFunctionCall, MissingFile */ htmlspecialchars(include("pages/constitution.php")); ?>
+<?php /* @phpstan-ignore-line */ /** @psalm-suppress UnusedFunctionCall, MissingFile */ /** @psalm-suppress UnusedFunctionCall, MissingFile */ htmlspecialchars(include("pages/constitution.php")); ?>
 
 <br /><br />
-<?php /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_terms){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><input type='checkbox' name='p_terms' <?php /** @psalm-suppress RiskyTruthyFalsyComparison */ if($p_terms){ echo "checked";} ?>> I agree to the Consitution<!-- codespell:ignore consitution -->
+<?php /** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(!$p_terms){ echo "<h5><font color='#ff0000'>X</font></h5>";} ?><input type='checkbox' name='p_terms' <?php /** @psalm-suppress RiskyTruthyFalsyComparison */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if($p_terms){ echo "checked";} ?>> I agree to the Consitution<!-- codespell:ignore consitution -->
 
 			</td>
 		</tr>
@@ -448,7 +448,7 @@ You can put your screenshots on this site <a href='shellexec:http://beta.localho
 					
 					
 			<tr>
-		<td align=left valign=top width=200>Refered By</td><td align=left><input type=text value='<?php /** @psalm-suppress PossiblyInvalidArgument */ echo $p_refer; ?>' name="p_refer" /></td><!-- codespell:ignore refered -->
+		<td align=left valign=top width=200>Refered By</td><td align=left><input type=text value='<?php /** @psalm-suppress PossiblyInvalidArgument */ /** @psalm-suppress PossiblyInvalidArgument */ echo $p_refer; ?>' name="p_refer" /></td><!-- codespell:ignore refered -->
 		</tr>	
 		
 			<tr>
@@ -592,7 +592,7 @@ You can put your screenshots on this site <a href='shellexec:http://beta.localho
 		</tr>
 		
 				<tr>
-		<td align=left valign=top width=200>Country </td><td><?php /* @phpstan-ignore-line */ /** @psalm-suppress MissingFile */ include("./features/ip2country.php"); ?></td>
+		<td align=left valign=top width=200>Country </td><td><?php /* @phpstan-ignore-line */ /** @psalm-suppress MissingFile */ /** @psalm-suppress MissingFile */ include("./features/ip2country.php"); ?></td>
 		</tr>
 		
 			<tr>
@@ -640,7 +640,7 @@ You can put your screenshots on this site <a href='shellexec:http://beta.localho
 		
 		<tr>
 			<td colspan=2 width=700>
-<?php /* @phpstan-ignore-line */ /** @psalm-suppress UnusedFunctionCall, MissingFile */ htmlspecialchars(include("pages/constitution.php")); ?>
+<?php /* @phpstan-ignore-line */ /** @psalm-suppress UnusedFunctionCall, MissingFile */ /** @psalm-suppress UnusedFunctionCall, MissingFile */ htmlspecialchars(include("pages/constitution.php")); ?>
 
 <br /><br />
 <input type='checkbox' name='p_terms' value='agree'> I agree to the Consitution<!-- codespell:ignore consitution -->
