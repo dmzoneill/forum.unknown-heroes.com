@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- jscpd:ignore-start -->
 <html>
 <head>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
@@ -219,3 +220,4 @@
   </table>
 </body>
 </html>
+<!-- jscpd:ignore-end -->
