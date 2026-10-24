@@ -25,7 +25,7 @@
 	if($ch = curl_init ($id)){
 		if($fp = fopen ($savefile, "w")){
 			/** @psalm-suppress UndefinedConstant */ /** @psalm-suppress UndefinedConstant */ curl_setopt ($ch, CURLOPT_FILE, $fp);
-			/** @psalm-suppress UndefinedConstant */ /** @psalm-suppress UndefinedConstant */ curl_setopt ($ch, CURLOPT_HEADER, 0);
+			/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedConstant */ /** @psalm-suppress UndefinedConstant */ curl_setopt ($ch, CURLOPT_HEADER, 0);
 			curl_exec ($ch);
 			curl_close ($ch);
 			fclose ($fp);
