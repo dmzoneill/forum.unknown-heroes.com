@@ -11,9 +11,10 @@
 	class MySQL_Service
 	{
 		var $conn;
-		var $db_host = "mysql.feeditout.com";
-		var $db_username = "strobelix";
-		var $db_password = "bGn7YnQx";
+		// Credentials removed at owner request (old, non-functional). Set real values locally.
+		var $db_host = 'CHANGE_ME';
+		var $db_username = 'CHANGE_ME';
+		var $db_password = 'CHANGE_ME';
 		var $db_database = "heroes";
 		var $db_table_prefix = "phpbb_"; 
 	
